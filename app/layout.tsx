@@ -15,7 +15,9 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
-const siteUrl = "https://eurotalentia.com";
+// Configurable so the canonical/OG base can be set per environment until the
+// final domain is connected. Set NEXT_PUBLIC_SITE_URL in Netlify env vars.
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://eurotalentia.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

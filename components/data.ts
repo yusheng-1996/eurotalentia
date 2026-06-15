@@ -921,6 +921,16 @@ export function applyHref(categorySlug?: string, roleSlug?: string): string {
   return `/${q ? `?${q}` : ""}#apply`;
 }
 
+/**
+ * Page heading / title for a category. Avoids a doubled "Jobs" when the
+ * category name already ends in "Jobs" (e.g. "Chef Jobs", "Pharmacy Jobs").
+ */
+export function categoryHeading(name: string): string {
+  return /jobs$/i.test(name.trim())
+    ? `${name} Across Europe`
+    : `${name} Jobs Across Europe`;
+}
+
 /* ------------------------------------------------------------------ */
 /*  Home page content                                                  */
 /* ------------------------------------------------------------------ */

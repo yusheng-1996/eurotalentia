@@ -12,7 +12,12 @@ import {
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { categories, getCategory, applyHref } from "@/components/data";
+import {
+  categories,
+  getCategory,
+  applyHref,
+  categoryHeading,
+} from "@/components/data";
 
 type Params = { category: string };
 
@@ -25,7 +30,7 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
   if (!category) {
     return { title: "Job category not found" };
   }
-  const title = `${category.name} Jobs Across Europe`;
+  const title = categoryHeading(category.name);
   const description = `${category.tagline} Explore ${category.name.toLowerCase()} role types including ${category.jobs
     .map((j) => j.title)
     .slice(0, 3)
@@ -90,7 +95,7 @@ export default function CategoryPage({ params }: { params: Params }) {
               All categories
             </Link>
             <h1 className="mt-5 max-w-3xl font-serif text-[2rem] font-semibold leading-tight text-white sm:text-5xl">
-              {name} Jobs Across Europe
+              {categoryHeading(name)}
             </h1>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/90 sm:text-lg">
               {tagline}
