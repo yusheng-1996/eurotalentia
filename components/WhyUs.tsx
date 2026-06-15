@@ -39,7 +39,7 @@ const benefits: Benefit[] = [
   {
     icon: MapPinned,
     title: "Opportunities across Europe",
-    body: "Work close to home or relocate. We recruit in 25+ countries and help with the move where relevant.",
+    body: "Work close to home or explore roles in another country — we recruit across 25+ European markets.",
   },
 ];
 

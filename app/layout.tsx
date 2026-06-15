@@ -26,14 +26,13 @@ export const metadata: Metadata = {
     template: "%s | EuroTalentia",
   },
   description:
-    "EuroTalentia connects candidates with entry-level, professional, flexible and relocation-friendly roles across 25+ European countries. Free for candidates, with recruiter support from application to interview.",
+    "EuroTalentia connects candidates with entry-level, professional and flexible roles across 25+ European countries. Free for candidates, with recruiter support from application to interview.",
   keywords: [
     "jobs in Europe",
     "European recruitment",
     "flexible jobs",
     "part-time jobs Europe",
     "entry level jobs",
-    "relocation jobs Europe",
     "recruitment agency Europe",
   ],
   alternates: {

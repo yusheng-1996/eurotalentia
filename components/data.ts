@@ -1023,7 +1023,11 @@ export const faqItems: FaqItem[] = [
   },
   {
     q: "Which countries do you cover?",
-    a: "We work with employers across 25+ European countries. When you apply you can tell us your preferred country (or countries) and whether you are open to relocation, and we will focus on opportunities that fit.",
+    a: "We work with employers across 25+ European countries. When you apply you can tell us your preferred country (or countries) and we will focus on opportunities that fit. You are responsible for confirming your own legal right to work in your preferred country.",
+  },
+  {
+    q: "Do you provide visa or immigration services?",
+    a: "No. EuroTalentia is not a visa, immigration, or relocation agency. We do not provide visa services, immigration advice, work permit processing, or relocation approval. Candidates are responsible for ensuring they have the legal right to work in their preferred country.",
   },
   {
     q: "Can I apply for part-time jobs?",
@@ -1047,3 +1051,21 @@ export const navLinks = [
   { label: "FAQ", href: "/#faq" },
   { label: "Apply", href: "/#apply" },
 ];
+
+/* ------------------------------------------------------------------ */
+/*  Compliance copy (reused across the site)                           */
+/* ------------------------------------------------------------------ */
+
+/** Comprehensive disclaimer shown near the form and on legal pages. */
+export const DISCLAIMER_FULL =
+  "Important: EuroTalentia is a recruitment matching service only. We are not a visa, immigration, work-permit, legal, or relocation agency. We do not provide visa services, immigration advice, work-permit processing, relocation approval, or job-placement guarantees. Candidates are responsible for confirming their own legal right to work before accepting any role.";
+
+/** Consent text shown next to the application form (links to Privacy Policy). */
+export const FORM_CONSENT =
+  "By submitting this form, you agree that EuroTalentia may contact you about suitable job opportunities. Your details are handled according to our Privacy Policy.";
+
+/** Short footer disclaimer. */
+export const FOOTER_VISA_NOTE =
+  "EuroTalentia does not provide visa, immigration, work permit, or relocation approval services.";
+
+export const COMPANY_EMAIL = "hello@eurotalentia.com";

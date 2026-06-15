@@ -1,5 +1,7 @@
+import Link from "next/link";
 import { ShieldCheck, Clock3, Lock } from "lucide-react";
 import FormCraftEmbed from "./FormCraftEmbed";
+import { DISCLAIMER_FULL } from "./data";
 
 const reassurances = [
   { icon: ShieldCheck, label: "Free for candidates" },
@@ -36,7 +38,26 @@ export default function ApplySection() {
 
           {/* Right: form */}
           <div className="rounded-2xl border border-haze bg-white p-4 shadow-card sm:p-6">
+            {/* Consent disclosure (shown before submission) */}
+            <p className="mb-4 rounded-xl bg-haze/70 px-4 py-3 text-xs leading-relaxed text-muted">
+              By submitting this form, you agree that EuroTalentia may contact
+              you about suitable job opportunities. Your details are handled
+              according to our{" "}
+              <Link
+                href="/privacy-policy"
+                className="font-medium text-brand underline-offset-2 hover:underline"
+              >
+                Privacy Policy
+              </Link>
+              .
+            </p>
+
             <FormCraftEmbed />
+
+            {/* Full compliance disclaimer (visible near the form) */}
+            <p className="mt-4 border-t border-haze pt-4 text-xs leading-relaxed text-muted">
+              {DISCLAIMER_FULL}
+            </p>
           </div>
         </div>
       </div>

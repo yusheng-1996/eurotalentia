@@ -30,9 +30,9 @@ export default function Hero() {
           </h1>
 
           <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">
-            EuroTalentia connects candidates with entry-level, professional,
-            flexible, and relocation-friendly roles across Europe. Tell us your
-            skills, preferred country, language, and availability — our
+            EuroTalentia connects candidates with entry-level, professional and
+            flexible roles — country-specific opportunities across Europe. Tell
+            us your skills, preferred country, language, and availability — our
             recruitment team will match you with suitable opportunities.
           </p>
 

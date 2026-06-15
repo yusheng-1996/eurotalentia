@@ -114,7 +114,7 @@ export default function CategoryPage({ params }: { params: Params }) {
             <div className="max-w-3xl">
               <span className="eyebrow">Example roles</span>
               <h2 className="section-title mt-4">
-                Roles we recruit for in {name}
+                Typical roles we recruit for in {name}
               </h2>
               <p className="mt-4 text-muted">{description}</p>
             </div>

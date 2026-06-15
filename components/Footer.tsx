@@ -1,5 +1,11 @@
 import Link from "next/link";
-import { navLinks } from "./data";
+import { navLinks, FOOTER_VISA_NOTE, COMPANY_EMAIL } from "./data";
+
+const legalLinks = [
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Terms of Service", href: "/terms-of-service" },
+  { label: "Contact", href: "/contact" },
+];
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -43,34 +49,54 @@ export default function Footer() {
 
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-ink">
-              Contact
+              Legal &amp; Contact
             </h3>
             <ul className="mt-4 space-y-2.5 text-sm text-muted">
+              {legalLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="transition-colors hover:text-brand"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
               <li>
                 <a
-                  href="mailto:hello@eurotalentia.com"
+                  href={`mailto:${COMPANY_EMAIL}`}
                   className="transition-colors hover:text-brand"
                 >
-                  hello@eurotalentia.com
+                  {COMPANY_EMAIL}
                 </a>
               </li>
-              <li>Mon–Fri, 9:00–18:00 CET</li>
-              <li>Response within 24 hours</li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-haze pt-6 sm:flex-row">
+        {/* Compliance disclaimer */}
+        <p className="mt-10 border-t border-haze pt-6 text-xs leading-relaxed text-muted">
+          {FOOTER_VISA_NOTE} EuroTalentia is a recruitment matching service and
+          does not guarantee employment, interviews, or job placement.
+        </p>
+
+        <div className="mt-6 flex flex-col items-center justify-between gap-4 sm:flex-row">
           <p className="text-xs text-muted">
             © {year} EuroTalentia. All rights reserved.
           </p>
           <div className="flex gap-5 text-xs text-muted">
-            <a href="#" className="transition-colors hover:text-brand">
+            <Link
+              href="/privacy-policy"
+              className="transition-colors hover:text-brand"
+            >
               Privacy Policy
-            </a>
-            <a href="#" className="transition-colors hover:text-brand">
+            </Link>
+            <Link
+              href="/terms-of-service"
+              className="transition-colors hover:text-brand"
+            >
               Terms of Service
-            </a>
+            </Link>
           </div>
         </div>
       </div>

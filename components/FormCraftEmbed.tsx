@@ -4,43 +4,8 @@ import { useEffect, useRef, useState } from "react";
 
 const FORM_SRC = "https://formcraft.app/form/8eaf4ef7-3b52-48eb-a2e5-af81c92e5b6f";
 const FORM_ORIGIN = "https://formcraft.app";
-const SUBMITTED_FLAG = "eurotalentia_form_submitted";
 
 type Status = "idle" | "received";
-
-declare global {
-  interface Window {
-    gtag_report_conversion?: (url?: string) => void;
-  }
-}
-
-/**
- * Injects a tracking-code HTML snippet and runs it once.
- * - <script> tags are recreated so the browser actually executes them.
- * - Remaining nodes (noscript / img / iframe pixels) are appended to <body>.
- */
-function runTrackingCode(html: string) {
-  if (!html) return;
-  const container = document.createElement("div");
-  container.innerHTML = html;
-
-  // Execute scripts (innerHTML-inserted scripts do not run on their own).
-  const scripts = Array.from(container.querySelectorAll("script"));
-  scripts.forEach((oldScript) => {
-    const script = document.createElement("script");
-    for (const attr of Array.from(oldScript.attributes)) {
-      script.setAttribute(attr.name, attr.value);
-    }
-    script.text = oldScript.textContent || "";
-    document.body.appendChild(script);
-    oldScript.remove();
-  });
-
-  // Append the remaining markup (noscript pixels, tracking <img>/<iframe>, etc.).
-  Array.from(container.childNodes).forEach((node) => {
-    document.body.appendChild(node);
-  });
-}
 
 function isMobileDevice() {
   if (typeof navigator === "undefined") return false;
@@ -54,22 +19,21 @@ function toAbsoluteUrl(url: string) {
   return `${window.location.origin}${url.startsWith("/") ? "" : "/"}${url}`;
 }
 
+/**
+ * Embeds the FormCraft application form.
+ *
+ * Privacy / Google Ads compliance: this component sets NO cookies and loads
+ * NO analytics, remarketing or advertising scripts. The duplicate-submission
+ * guard is kept purely in-memory (a React ref) so nothing is written to
+ * cookies, localStorage or sessionStorage.
+ */
 export default function FormCraftEmbed() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  // Prevents the parent page from handling more than one rf-submitted.
+  // In-memory guard only — no web storage, no cookies.
   const hasSubmittedRef = useRef(false);
-  // Ensures the conversion callback fires at most once.
-  const conversionFiredRef = useRef(false);
   const [status, setStatus] = useState<Status>("idle");
 
   useEffect(() => {
-    // If the user already submitted in this session and then refreshed,
-    // keep the guards closed so tracking/redirect never fire twice.
-    if (sessionStorage.getItem(SUBMITTED_FLAG) === "true") {
-      hasSubmittedRef.current = true;
-      conversionFiredRef.current = true;
-    }
-
     const handleMessage = (event: MessageEvent) => {
       // Only trust messages coming from FormCraft.
       if (event.origin !== FORM_ORIGIN) return;
@@ -86,33 +50,14 @@ export default function FormCraftEmbed() {
       const type = data.type ?? data.event;
       if (type !== "rf-submitted") return;
 
-      // Already handled (including after a refresh) — ignore extra messages.
+      // Prevent the parent page from handling more than one submission /
+      // firing the redirect twice.
       if (hasSubmittedRef.current) return;
       hasSubmittedRef.current = true;
-      try {
-        sessionStorage.setItem(SUBMITTED_FLAG, "true");
-      } catch {
-        /* sessionStorage may be unavailable in strict privacy modes */
-      }
 
       setStatus("received");
 
-      // --- Tracking (root-level field, runs once) ---
-      if (typeof data.trackingCode === "string") {
-        runTrackingCode(data.trackingCode);
-      }
-      if (!conversionFiredRef.current) {
-        conversionFiredRef.current = true;
-        if (typeof window.gtag_report_conversion === "function") {
-          try {
-            window.gtag_report_conversion();
-          } catch {
-            /* never let a tracking error block the redirect */
-          }
-        }
-      }
-
-      // --- Resolve destinations from root-level fields ---
+      // Resolve the thank-you destination (no tracking, no cookies).
       const thankYouUrl = toAbsoluteUrl(
         typeof data.thankYouUrl === "string" && data.thankYouUrl
           ? data.thankYouUrl
@@ -125,7 +70,7 @@ export default function FormCraftEmbed() {
       const redirect = typeof data.redirect === "string" ? data.redirect : "";
       const hasWhatsapp = whatsapp.length > 0 && redirect.length > 0;
 
-      const TRACK_DELAY = 800; // give async tags time to fire before navigating
+      const REDIRECT_DELAY = 600;
 
       if (isMobileDevice()) {
         // Mobile: open WhatsApp first (same tab), then thank-you afterwards.
@@ -137,7 +82,7 @@ export default function FormCraftEmbed() {
         } else {
           window.setTimeout(() => {
             window.location.href = thankYouUrl;
-          }, TRACK_DELAY);
+          }, REDIRECT_DELAY);
         }
       } else {
         // Desktop: open WhatsApp in a new tab, then redirect this tab.
@@ -146,7 +91,7 @@ export default function FormCraftEmbed() {
         }
         window.setTimeout(() => {
           window.location.href = thankYouUrl;
-        }, TRACK_DELAY);
+        }, REDIRECT_DELAY);
       }
     };
 
