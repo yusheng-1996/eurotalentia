@@ -1,0 +1,10 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Netlify automatically installs and runs the official Next.js Runtime,
+# which handles SSR, static pages, redirects and next/image. No extra
+# plugin config is required for Next.js 14 (App Router).

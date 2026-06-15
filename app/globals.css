@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* offset for sticky header when jumping to #anchors */
+  scroll-padding-top: 88px;
+}
+
+body {
+  @apply bg-white text-ink font-sans antialiased;
+  overflow-x: hidden;
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-container px-5 sm:px-6 lg:px-8;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold leading-none transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply btn bg-brand text-white shadow-soft hover:bg-brand-dark hover:shadow-card;
+  }
+
+  .btn-secondary {
+    @apply btn border border-ink/15 bg-white text-ink hover:border-brand hover:text-brand;
+  }
+
+  .btn-ghost {
+    @apply btn text-ink hover:text-brand;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full bg-brand-tint px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-dark;
+  }
+
+  .section-title {
+    @apply font-serif text-3xl leading-tight text-ink sm:text-4xl;
+  }
+}
+
+/* Hide scrollbar for horizontal carousels but keep functionality */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
