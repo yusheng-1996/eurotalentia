@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { navLinks } from "./data";
 
 export default function Footer() {
@@ -7,14 +8,14 @@ export default function Footer() {
       <div className="container-page py-12">
         <div className="grid gap-8 md:grid-cols-[1.5fr_1fr_1fr]">
           <div className="max-w-sm">
-            <a href="#home" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2">
               <span className="grid h-9 w-9 place-items-center rounded-lg bg-brand text-base font-bold text-white">
                 E
               </span>
               <span className="font-serif text-xl font-semibold text-ink">
                 EuroTalentia
               </span>
-            </a>
+            </Link>
             <p className="mt-4 text-sm leading-relaxed text-muted">
               Connecting candidates with flexible, entry-level and professional
               roles across 25+ European countries. Free for candidates,
@@ -29,12 +30,12 @@ export default function Footer() {
             <ul className="mt-4 space-y-2.5">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <a
+                  <Link
                     href={link.href}
                     className="text-sm text-muted transition-colors hover:text-brand"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
