@@ -6,7 +6,7 @@ import { COMPANY_EMAIL } from "@/components/data";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "How EuroTalentia collects, uses and protects your personal data. We use no advertising or analytics cookies and process your details only to match you with suitable job opportunities.",
+    "How EuroTalentia collects, uses and protects your personal data when you apply for job opportunities, including FormCraft submissions and Google Ads conversion measurement.",
   alternates: { canonical: "/privacy-policy" },
 };
 
