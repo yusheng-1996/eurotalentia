@@ -32,22 +32,32 @@ export default function PrivacyPolicy() {
                 with the EU General Data Protection Regulation (GDPR).
               </p>
 
-              <h2>No advertising or analytics cookies</h2>
+              <h2>Cookies and conversion tracking</h2>
               <p>
-                EuroTalentia does <strong>not</strong> intentionally add
-                marketing cookies, analytics cookies, remarketing pixels, or
-                Meta/Google tracking cookies. Our website does{" "}
-                <strong>not</strong> use analytics, advertising, remarketing or
-                tracking technologies (such as Google Analytics, Google Tag
-                Manager, Meta Pixel, Customer Match or Enhanced Conversions), and
-                we do not build advertising profiles or share your data with
-                advertising networks.
+                We use <strong>Google Ads conversion tracking</strong> to
+                measure the effectiveness of our advertising — specifically, to
+                understand when a visit that originated from one of our ads
+                results in a completed application. For this purpose Google may
+                set cookies on your device (such as <code>_gcl_*</code>) and
+                process related data as described in Google&apos;s own privacy
+                policy. We use this strictly for conversion measurement.
+              </p>
+              <p>
+                Beyond Google Ads conversion measurement, we do{" "}
+                <strong>not</strong> use general analytics suites (such as Google
+                Analytics), social pixels (such as Meta Pixel), or other
+                remarketing technologies, and we do not build cross-site
+                advertising profiles or sell your data to advertising networks.
               </p>
               <p>
                 Third-party services embedded on our site (see &quot;The
-                application form&quot; below) may set strictly necessary cookies
-                required for their own security and core functionality. These are
-                not used by EuroTalentia for marketing or analytics.
+                application form&quot; below) may also set strictly necessary
+                cookies required for their own security and core functionality.
+              </p>
+              <p>
+                Depending on your location, you may have the right to consent to
+                or decline non-essential cookies. You can also control cookies
+                through your browser settings.
               </p>
 
               <h2>What we collect</h2>

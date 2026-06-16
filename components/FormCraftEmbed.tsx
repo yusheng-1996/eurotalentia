@@ -7,6 +7,12 @@ const FORM_ORIGIN = "https://formcraft.app";
 
 type Status = "idle" | "received";
 
+declare global {
+  interface Window {
+    gtag_report_conversion?: (url?: string) => void;
+  }
+}
+
 function isMobileDevice() {
   if (typeof navigator === "undefined") return false;
   return /android|iphone|ipad|ipod|iemobile|blackberry|opera mini/i.test(
@@ -22,15 +28,16 @@ function toAbsoluteUrl(url: string) {
 /**
  * Embeds the FormCraft application form.
  *
- * Privacy / Google Ads compliance: this component sets NO cookies and loads
- * NO analytics, remarketing or advertising scripts. The duplicate-submission
- * guard is kept purely in-memory (a React ref) so nothing is written to
- * cookies, localStorage or sessionStorage.
+ * The duplicate-submission guard is kept purely in-memory (a React ref).
+ * Google Ads conversion tracking only fires if a conversion tag has been
+ * configured via env vars (see GoogleAdsTag); otherwise no tracking runs.
  */
 export default function FormCraftEmbed() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  // In-memory guard only — no web storage, no cookies.
+  // In-memory guard only — prevents handling more than one submission.
   const hasSubmittedRef = useRef(false);
+  // Ensures the conversion fires at most once.
+  const conversionFiredRef = useRef(false);
   const [status, setStatus] = useState<Status>("idle");
 
   useEffect(() => {
@@ -57,7 +64,21 @@ export default function FormCraftEmbed() {
 
       setStatus("received");
 
-      // Resolve the thank-you destination (no tracking, no cookies).
+      // Fire the Google Ads conversion once (only if a tag is configured).
+      if (!conversionFiredRef.current) {
+        conversionFiredRef.current = true;
+        if (typeof window.gtag_report_conversion === "function") {
+          try {
+            // No url argument: just record the conversion; we handle the
+            // redirect ourselves below to avoid a double navigation.
+            window.gtag_report_conversion();
+          } catch {
+            /* never let a tracking error block the redirect */
+          }
+        }
+      }
+
+      // Resolve the thank-you destination.
       const thankYouUrl = toAbsoluteUrl(
         typeof data.thankYouUrl === "string" && data.thankYouUrl
           ? data.thankYouUrl

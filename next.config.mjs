@@ -6,14 +6,15 @@ const contentSecurityPolicy = [
   "default-src 'self'",
   "base-uri 'self'",
   "object-src 'none'",
-  "img-src 'self' data: https://images.unsplash.com",
+  "img-src 'self' data: https://images.unsplash.com https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com",
   // Next.js injects inline styles/scripts (hydration); 'unsafe-inline' is
-  // required without a nonce setup. No third-party script origins are allowed.
+  // required without a nonce setup. Google Ads gtag is allowed for conversion
+  // measurement only (no analytics suite, no social pixels).
   "style-src 'self' 'unsafe-inline'",
-  "script-src 'self' 'unsafe-inline'",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.googleadservices.com https://www.google.com",
   "font-src 'self' data:",
-  "connect-src 'self'",
-  "frame-src https://formcraft.app",
+  "connect-src 'self' https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com https://pagead2.googlesyndication.com",
+  "frame-src https://formcraft.app https://td.doubleclick.net https://www.googletagmanager.com",
   "form-action 'self' https://formcraft.app",
   "frame-ancestors 'self'",
   "upgrade-insecure-requests",
