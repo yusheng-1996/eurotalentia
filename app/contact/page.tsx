@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Mail, Clock3, MessageSquare } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { COMPANY_EMAIL, DISCLAIMER_FULL } from "@/components/data";
+import { COMPANY_EMAIL } from "@/components/data";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -84,7 +84,14 @@ export default function Contact() {
             </div>
 
             <p className="mt-12 border-t border-haze pt-6 text-xs leading-relaxed text-muted">
-              {DISCLAIMER_FULL}
+              EuroTalentia is a recruitment matching service. See our{" "}
+              <Link
+                href="/terms-of-service"
+                className="font-medium text-brand underline-offset-2 hover:underline"
+              >
+                Terms of Service
+              </Link>{" "}
+              for full details.
             </p>
           </div>
         </section>

@@ -74,10 +74,9 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Compliance disclaimer */}
+        {/* Compliance disclaimer (short footer version only) */}
         <p className="mt-10 border-t border-haze pt-6 text-xs leading-relaxed text-muted">
-          {FOOTER_VISA_NOTE} EuroTalentia is a recruitment matching service and
-          does not guarantee employment, interviews, or job placement.
+          {FOOTER_VISA_NOTE}
         </p>
 
         <div className="mt-6 flex flex-col items-center justify-between gap-4 sm:flex-row">

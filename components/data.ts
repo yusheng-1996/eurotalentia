@@ -1066,6 +1066,6 @@ export const FORM_CONSENT =
 
 /** Short footer disclaimer. */
 export const FOOTER_VISA_NOTE =
-  "EuroTalentia does not provide visa, immigration, work permit, or relocation approval services.";
+  "EuroTalentia does not provide visa, immigration, work-permit, legal, or relocation approval services.";
 
 export const COMPANY_EMAIL = "hello@eurotalentia.com";

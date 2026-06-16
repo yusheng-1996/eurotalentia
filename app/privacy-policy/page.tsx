@@ -34,12 +34,20 @@ export default function PrivacyPolicy() {
 
               <h2>No advertising or analytics cookies</h2>
               <p>
-                Our website does <strong>not</strong> set first-party cookies
-                and does <strong>not</strong> use analytics, advertising,
-                remarketing or tracking technologies (such as Google Analytics,
-                Google Tag Manager, Meta Pixel, Customer Match or Enhanced
-                Conversions). We do not build advertising profiles or share your
-                data with advertising networks.
+                EuroTalentia does <strong>not</strong> intentionally add
+                marketing cookies, analytics cookies, remarketing pixels, or
+                Meta/Google tracking cookies. Our website does{" "}
+                <strong>not</strong> use analytics, advertising, remarketing or
+                tracking technologies (such as Google Analytics, Google Tag
+                Manager, Meta Pixel, Customer Match or Enhanced Conversions), and
+                we do not build advertising profiles or share your data with
+                advertising networks.
+              </p>
+              <p>
+                Third-party services embedded on our site (see &quot;The
+                application form&quot; below) may set strictly necessary cookies
+                required for their own security and core functionality. These are
+                not used by EuroTalentia for marketing or analytics.
               </p>
 
               <h2>What we collect</h2>
@@ -70,11 +78,12 @@ export default function PrivacyPolicy() {
 
               <h2>The application form</h2>
               <p>
-                Our application form is provided through a third-party form
-                provider (FormCraft) embedded on our site. Information you submit
-                is processed to deliver your application to us. Please review the
-                form provider&apos;s own privacy terms for details of their
-                processing.
+                EuroTalentia uses FormCraft, a third-party form provider, to
+                process application form submissions. The form is embedded on our
+                site, and information you submit through it is processed to
+                deliver your application to us. Please review FormCraft&apos;s own
+                privacy terms for details of their processing and any strictly
+                necessary cookies they may set.
               </p>
 
               <h2>Data sharing</h2>
