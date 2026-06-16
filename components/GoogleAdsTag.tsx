@@ -14,7 +14,8 @@ import Script from "next/script";
  */
 const ADS_ID =
   process.env.NEXT_PUBLIC_GADS_CONVERSION_ID || "AW-18243474806";
-const LABEL = process.env.NEXT_PUBLIC_GADS_CONVERSION_LABEL;
+const LABEL =
+  process.env.NEXT_PUBLIC_GADS_CONVERSION_LABEL || "zckRCNKa7r8cEPaqlftD";
 
 export default function GoogleAdsTag() {
   if (!ADS_ID) return null;
@@ -39,6 +40,8 @@ export default function GoogleAdsTag() {
             };
             gtag('event', 'conversion', {
               'send_to': '${sendTo}',
+              'value': 1.0,
+              'currency': 'USD',
               'event_callback': callback
             });
             return false;
